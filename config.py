@@ -1,5 +1,7 @@
 import os
 
+import pygame.transform
+
 ROWS = 30
 COLS = 30
 TILE_SIZE = 26
@@ -28,3 +30,6 @@ BGCOLOUR = DARK_GREY
 # paths
 GAME_FOLDER = os.path.dirname(__file__)
 MAP_FOLDER = os.path.join(GAME_FOLDER, 'assets')
+
+tile_green = pygame.transform.scale(pygame.image.load(os.path.join("assets", "trees-and-bushes.png")),
+                                    (TILE_SIZE, TILE_SIZE))
