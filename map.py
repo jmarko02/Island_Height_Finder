@@ -1,6 +1,19 @@
 import numpy as np
 import requests
 
+"""
+Map class handling island data and detection.
+
+Fetches and processes map data from an API, detects distinct islands, and calculates 
+their average heights. Maintains mappings between fields, islands, and their properties.
+
+Attributes:
+    grid (numpy.array): 2D array representing the height map
+    island_to_fields (dict): Maps island IDs to lists of coordinate tuples
+    field_to_island (dict): Maps field coordinates to island IDs
+    island_to_avg_height (dict): Maps island IDs to their average heights
+"""
+
 
 class Map:
 
@@ -8,16 +21,12 @@ class Map:
         response = requests.get("https://jobfair.nordeus.com/jf24-fullstack-challenge/test")
         data = response.text.strip().split("\n")
         self.grid = np.array([list(map(int, row.split())) for row in data])
-        print(self.grid)
 
         self.island_to_fields = {}
         self.field_to_island = {}
         self.island_to_avg_height = {}
 
         self.detect_islands()
-        print(self.island_to_fields)
-        print(self.field_to_island)
-        print(self.island_to_avg_height)
 
     def detect_islands(self):
         island_id = 0
